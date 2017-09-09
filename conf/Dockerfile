@@ -3,15 +3,14 @@ FROM centos/php-56-centos7
 USER root
 
 COPY composer.phar /usr/bin/composer
-#RUN chmod +x /usr/bin/composer
-
-# Install Composer
-#RUN composer --version
+RUN chmod +x /usr/bin/composer \
+&& composer --version
 
 # Install modules
-#RUN apt-get update -y
+#RUN yum update -y
 
 RUN yum install -y \
+	php-devel \
     unzip \
     openssl-devel.x86_64 \
     libzip-devel.x86_64
