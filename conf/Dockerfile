@@ -9,21 +9,22 @@ COPY composer.phar /usr/bin/composer
 # Install modules
 #RUN apt-get update -y
 
-RUN yum install -y --force-yes \
+RUN yum install -y \
     unzip \
-    libssl-dev \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libpq-dev \
-    libzip-dev \
-    libldap2-dev \
-    libxslt-dev \
-    libcurl4-openssl-dev \
-    libmcrypt-dev \
-    libicu-dev \
-    imagemagick \
-    libsqlite3-dev \
-    wkhtmltopdf
+    openssl-devel.x86_64 \
+    libzip-devel.x86_64
+#    libfreetype6-dev \
+#    libjpeg62-turbo-dev \
+#    libpq-dev \
+#    libzip-dev \
+#    libldap2-dev \
+#    libxslt-dev \
+#    libcurl4-openssl-dev \
+#    libmcrypt-dev \
+#    libicu-dev \
+#    imagemagick \
+#    libsqlite3-dev \
+#    wkhtmltopdf
 
 RUN pecl install xdebug && docker-php-ext-enable xdebug
 RUN pecl install imagick && docker-php-ext-enable imagick
