@@ -2,6 +2,8 @@ FROM centos/php-56-centos7
 
 USER root
 
+RUN php -v && httpd -v
+
 COPY composer.phar /usr/bin/composer
 RUN chmod +x /usr/bin/composer \
 && composer --version
