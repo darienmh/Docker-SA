@@ -1,7 +1,7 @@
 FROM centos/php-56-centos7
 
 COPY composer.phar /usr/bin/composer
-RUN chmod +x /usr/bin/composer
+#RUN chmod +x /usr/bin/composer
 
 # Install Composer
 RUN composer --version
