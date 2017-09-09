@@ -1,8 +1,8 @@
-FROM centos/php-56-centos7
+FROM centos
 
 USER root
 
-RUN php -v && httpd -v
+#RUN php -v && httpd -v
 
 COPY composer.phar /usr/bin/composer
 RUN chmod +x /usr/bin/composer \
@@ -12,6 +12,7 @@ RUN chmod +x /usr/bin/composer \
 #RUN yum update -y
 
 RUN yum install -y \
+    php56 \
 	php-devel \
     unzip \
     openssl-devel.x86_64 \
