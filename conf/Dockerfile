@@ -4,9 +4,9 @@ USER root
 
 #RUN php -v && httpd -v
 
-COPY composer.phar /usr/bin/composer
-RUN chmod +x /usr/bin/composer \
-&& composer --version
+#COPY composer.phar /usr/bin/composer
+#RUN chmod +x /usr/bin/composer \
+#&& composer --version
 
 # Install modules
 #RUN yum update -y
