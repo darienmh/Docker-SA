@@ -4,7 +4,7 @@ COPY composer.phar /usr/bin/composer
 #RUN chmod +x /usr/bin/composer
 
 # Install Composer
-RUN composer --version
+#RUN composer --version
 
 # Install modules
 RUN apt-get update -y
