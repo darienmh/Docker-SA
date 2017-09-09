@@ -7,9 +7,9 @@ COPY composer.phar /usr/bin/composer
 #RUN composer --version
 
 # Install modules
-RUN apt-get update -y
+#RUN apt-get update -y
 
-RUN apt-get install -y --force-yes \
+RUN yum install -y --force-yes \
     unzip \
     libssl-dev \
     libfreetype6-dev \
