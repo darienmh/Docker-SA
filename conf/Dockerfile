@@ -1,4 +1,4 @@
-FROM php-56-centos7
+FROM centos/php-56-centos7
 
 USER root
 
