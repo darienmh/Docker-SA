@@ -7,8 +7,10 @@ services:
             - ..\..\PhpstormProjects:/var/www/html
             #- ../logs/app:/var/www/html/app/logs
             #- .\conf\php.ini:/usr/local/etc/php/php.ini
+    httpd:
+        image: nexus.prod.uci.cu/httpd:2.4
     mariadb:
-        image: nexus.prod.uci.cu/mariadb:latest
+        image: nexus.prod.uci.cu/mariadb:5.5
         ports:
             - "3306:3306"
         volumes:    
@@ -18,9 +20,9 @@ services:
             MYSQL_DATABASE: sitio_db
             MYSQL_PASSWORD: d535e4928584ac2bca68865e6246da4c
     phpmyadmin:
-        image: nexus.prod.uci.cu/bitnami/phpmyadmin:latest
+        image: nexus.prod.uci.cu/phpmyadmin/phpmyadmin:4.6
         depends_on:
-           - mariadb_symfony
+           - mariadb
         ports:
            - '8080:80'
            - '444:443'
@@ -28,9 +30,9 @@ services:
            - PHPMYADMIN_ALLOW_NO_PASSWORD=true
            - PHPMYADMIN_ALLOW_ARBITRARY_SERVER=true
         volumes:
-           - phpmyadmin_data:/bitnami/phpmyadmin
-           - php_data:/bitnami/php
-           - apache_data:/bitnami/apache
+           - phpmyadmin_data:/data/phpmyadmin
+           - php_data:/data/php
+           - httpd_data:/data/httpd
     
 volumes:
   mariadb_data:
@@ -39,58 +41,5 @@ volumes:
     driver: local
   php_data:
     driver: local
-  apache_data:
+  httpd_data:
     driver: local
-#    database:
-#        image: nexus.prod.uci.cu/mysql:latest
-#        ports:
-#            - "3306:3306"
-#        volumes:
-#            - ./database/mysql:/var/lib/mysql
-#        environment:
-#            MYSQL_ROOT_PASSWORD: 42c8142ac40bac89e58281e6302a18b3477e6e8e
-#            MYSQL_DATABASE: cortexdev
-#            MYSQL_PASSWORD: 42c8142ac40bac89e58281e6302a18b3477e6e8e
-#    cache:
-#       image: nexus.prod.uci.cu/redis:latest
-#        ports:
-#            - "6379:6379"
-#    kibana:
-#        image: nexus.prod.uci.cu/kibana/kibana:5.2.2
-#        ports:
-#            - "81:80"
-#        environment:
-#            ELASTICSEARCH_USERNAME: elastic
-#            ELASTICSEARCH_PASSWORD: changeme
-#            ELASTICSEARCH_URL: http://elasticsearch:9200
-#        links: 
-#            - elasticsearch:elasticsearch
-#        volumes:
-#        
-#        volumes_from:
-#            - web
-#            - php
-#    elasticsearch:
-#        image: nexus.prod.uci.cu/elasticsearch/elasticsearch:5.2.2
-#        environment:
-#            - cluster.name=docker-cluster
-#            - bootstrap.memory_lock=true
-#            - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#            - "discovery.zen.ping.unicast.hosts=elasticsearch1"
-#        ulimits:
-#            memlock:
-#                soft: -1
-#                hard: -1
-#        mem_limit: 1g
-#        volumes:
-#            - ./docker_data/esdata:/usr/share/elasticsearch/data
-#    logstash:
-#        image: nexus.prod.uci.cu/logstash/logstash:5.2.2
-#        links: 
-#            - elasticsearch:elasticsearch
-#        volumes:
-#            - ./conf/logstash.conf:/usr/share/logstash/config/logstash.yml
-#            - ./conf/patterns:/usr/share/logstash/config/patterns
-#        volumes_from:
-#            - web
-#            - php
