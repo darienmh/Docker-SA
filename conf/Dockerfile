@@ -20,7 +20,7 @@ RUN yum install -y \
     openssl-devel.x86_64 \
     libzip-devel.x86_64 \
 
-    php56-php-pear gcc gcc-c++ autoconf automake \
+    php-devel gcc gcc-c++ autoconf automake \
 
 
 #    	libfreetype6-dev \
