@@ -20,6 +20,8 @@ RUN yum install -y \
     openssl-devel.x86_64 \
     libzip-devel.x86_64 \
 
+    php56-php-pear gcc gcc-c++ autoconf automake \ #Para compilar php
+
 
 #    	libfreetype6-dev \
 #    	libjpeg62-turbo-dev \
