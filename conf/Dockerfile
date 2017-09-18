@@ -4,7 +4,7 @@ USER root
 
 RUN php -v
 
-ADD composer.phar /usr/bin/composer
+ADD ../data/php/composer.phar /usr/bin/composer
 RUN chmod +x /usr/bin/composer \
 && composer --version
 
